@@ -27,7 +27,7 @@ def job():
 
 # you can use seconds too for testing purposes
 # you can see the incomming calls in main.py console
-schedule.every(1).seconds.do(job)
+schedule.every(30).minutes.do(job)
 
 while True:
     schedule.run_pending()
