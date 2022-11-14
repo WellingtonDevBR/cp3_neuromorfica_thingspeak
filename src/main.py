@@ -12,22 +12,27 @@ from sensors.tempture.tempture import save_temperature_sensor_data
 from sensors.weather.weather import save_weather_sensor_data
 from sensors.wind_power.wind_power import save_wind_sensor_data
 
+
 def job():
-    get_module_logger('main').info('Start job')
-    save_air_sensor_data()
-    save_air_polution_sensor_data()
-    save_air_quality_sensor_data()
-    save_co2_measurement_sensor_data()
-    save_shake_traffic_sensor_data()
-    save_temperature_sensor_data()
-    save_weather_sensor_data()
-    save_wind_sensor_data()
-    get_module_logger('main').info('End job')
+    try:
+        get_module_logger('main').info('Start job')
+        save_air_sensor_data()
+        save_air_polution_sensor_data()
+        save_air_quality_sensor_data()
+        save_co2_measurement_sensor_data()
+        save_shake_traffic_sensor_data()
+        save_temperature_sensor_data()
+        save_weather_sensor_data()
+        save_wind_sensor_data()
+        get_module_logger('main').info('End job')
+    except Exception as e:
+        get_module_logger('main').error(e)
+
 
 # you can use seconds too for testing purposes
 # you can see the incomming calls in main.py console
 schedule.every(30).minutes.do(job)
 
-while True:
+while(1):
     schedule.run_pending()
     time.sleep(1)
