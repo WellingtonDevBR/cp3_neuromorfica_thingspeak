@@ -6,14 +6,13 @@ from repository.mysql_database import MYSQL
 from sensors.sensor_implementation import SensorImplementation
 
 
-db_instance = MYSQL(
-    host=config('MYSQL_HOST'),
-    port=config('MYSQL_PORT'),
-    username=config('MYSQL_USER'),
-    password=config('MYSQL_PASSWORD')
-)
-
 def save_wind_sensor_data():
+    db_instance = MYSQL(
+        host=config('MYSQL_HOST'),
+        port=config('MYSQL_PORT'),
+        username=config('MYSQL_USER'),
+        password=config('MYSQL_PASSWORD')
+    )
     # WIND SENSOR
     response = requests.get(config('URL_WIND_POWER_SENSOR'))
     if (response.status_code == 200):

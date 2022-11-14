@@ -5,14 +5,14 @@ from datetime import datetime
 from sys import exit
 from sensors.sensor_implementation import SensorImplementation
 
-db_instance = MYSQL(
-    host=config('MYSQL_HOST'),
-    port=config('MYSQL_PORT'),
-    username=config('MYSQL_USER'),
-    password=config('MYSQL_PASSWORD')
-)
 
 def save_air_quality_sensor_data():
+    db_instance = MYSQL(
+        host=config('MYSQL_HOST'),
+        port=config('MYSQL_PORT'),
+        username=config('MYSQL_USER'),
+        password=config('MYSQL_PASSWORD')
+    )
     # AIR QUALITY SENSOR
     response = requests.get(config('URL_AIR_QUALITY_SENSOR'))
     if (response.status_code == 200):

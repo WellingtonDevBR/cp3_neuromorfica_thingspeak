@@ -1,20 +1,36 @@
-version: '3.7'
+version: "3.7"
 
 services:
+
+  app:
+    build: .
+    container_name: app
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - python-network
+      
   db:
     image: mysql:5.7
     restart: always
+    container_name: db
+    expose:
+      - "3306"
     ports:
       - 3306:3306
+    tty: true
+    volumes: 
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: thingspeak
       MYSQL_DATABASE: thingspeak
       MYSQL_USER: thingspeak
       MYSQL_PASSWORD: thingspeak
-  app:
-    build: .
-    restart: always
-    ports:
-      - 3000:3000
-    depends_on:
-      - db
+    networks:
+      - python-network
+  
+
+networks: 
+  python-network:
+    driver: bridge
