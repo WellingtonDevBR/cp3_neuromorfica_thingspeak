@@ -2,7 +2,6 @@ import time
 from logger import get_module_logger
 import schedule
 from decouple import config
-import logging
 from repository.mysql_database import MYSQL
 from sensors.air.air import save_air_sensor_data
 from sensors.air_polution.air_polution import save_air_polution_sensor_data
