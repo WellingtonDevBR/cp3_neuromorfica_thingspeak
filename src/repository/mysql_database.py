@@ -1,13 +1,12 @@
 import mysql.connector
 from repository.database import DatabaseConnetor
-from decouple import config
-
 
 class MYSQL(DatabaseConnetor):
 
     def __init__(self, host, port, username, password):
         super(MYSQL, self).__init__(host, port, username, password)
         self.cursor = None
+        self.connect()
         print('MYSQL connector initialized')
 
     def connect(self):
